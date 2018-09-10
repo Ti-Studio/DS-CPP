@@ -16,8 +16,8 @@ class Triplet {
 
     Status get(int, ElemType&) const;
     Status put(int, const ElemType&);
-    int isAscending() const;
-    int isDescending() const;
+    bool isAscending() const;
+    bool isDescending() const;
     Status max(ElemType& e) const;
     Status min(ElemType& e) const;
 };
@@ -52,12 +52,12 @@ Status Triplet<ElemType>::put(int i, const ElemType& e) {
 }
 
 template <typename ElemType>
-int Triplet<ElemType>::isAscending() const {
+bool Triplet<ElemType>::isAscending() const {
     return T[0] <= T[1] && T[1] <= T[2];
 }
 
 template <typename ElemType>
-int Triplet<ElemType>::isDescending() const {
+bool Triplet<ElemType>::isDescending() const {
     return T[0] >= T[1] && T[1] >= T[2];
 }
 
