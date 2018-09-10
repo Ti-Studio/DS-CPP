@@ -1,2 +1,6 @@
+cxxflags:
+  - -std=c++11
+  - -Wall
+
 syntax_check:
   - Triplet.h
