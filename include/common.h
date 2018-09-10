@@ -11,7 +11,7 @@ template <typename ElemType>
 ElemType* resize(ElemType* oldbuf, int oldsize, int newsize) {
     ElemType* newbuf = new ElemType[newsize];
     if (!newbuf) {
-        return oldbuf;
+        return NULL;
     }
     std::copy_n(oldbuf, std::min(oldsize, newsize), newbuf);
     delete[] oldbuf;
