@@ -3,9 +3,9 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <algorithm>
 
 using std::exit;
-using std::memcpy;
 
 template <typename ElemType>
 ElemType* resize(ElemType* oldbuf, int oldsize, int newsize) {
