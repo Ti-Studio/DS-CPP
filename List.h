@@ -4,12 +4,14 @@
 #include "include/status.h"
 #include "include/common.h"
 
-template <typename ElemType, unsigned int LIST_INIT_SIZE = 100, unsigned int LISTINCREMENT = 10>
+template <typename ElemType>
 class SeqList {
     private:
     ElemType* L;
     int _length;
     int listsize;
+    const int LIST_INIT_SIZE = 100;
+    const int LISTINCREMENT = 10;
 
     public:
     SeqList();
