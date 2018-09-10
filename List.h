@@ -25,9 +25,7 @@ class SeqList {
     Status nextElem(const ElemType&, ElemType&) const;
     Status insertElem(int i, const ElemType&);
     Status deleteElem(int i, ElemType&);
-
-    template <typename T>
-    Status traverse(T (*)(ElemType&)); // ?
+    Status traverse(Status (*)(ElemType&)); // ?
 };
 
 template <typename ElemType>
@@ -148,3 +146,12 @@ Status SeqList<ElemType>::deleteElem(int i, ElemType& e) {
     return OK;
 }
 
+template <typename ElemType>
+Status SeqList<ElemType>::traverse(Status (*visit)(ElemType &)) {
+    for (int i = 0; i < _length; i++) {
+        if (visit(L[i]) != OK) {
+            return ERROR;
+        }
+    }
+    return OK;
+}
