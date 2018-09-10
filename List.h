@@ -4,11 +4,9 @@
 #include "include/status.h"
 #include "include/common.h"
 
-template <typename ElemType>
+template <typename ElemType, unsigned int LIST_INIT_SIZE = 100, unsigned int LISTINCREMENT = 10>
 class SeqList {
     private:
-    const int LIST_INIT_SIZE = 100;
-    const int LISTINCREMENT = 10;
     ElemType* L;
     int _length;
     int listsize;
@@ -25,7 +23,9 @@ class SeqList {
     Status nextElem(const ElemType&, ElemType&) const;
     Status insertElem(int i, const ElemType&);
     Status deleteElem(int i, ElemType&);
-    Status traverse(void (*)(ElemType&)); // ?
+
+    template <typename T>
+    Status traverse(T (*)(ElemType&)); // ?
 };
 
 template <typename ElemType>
