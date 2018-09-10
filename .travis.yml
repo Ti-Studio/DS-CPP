@@ -1,0 +1,6 @@
+sudo: false
+language: ruby
+
+install: ":"
+script:
+  - ruby script/syntax_check.rb
