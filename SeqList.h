@@ -1,4 +1,4 @@
-// File: List.h
+// File: SeqList.h
 // Author: taoky
 
 #include "include/status.h"
@@ -25,7 +25,7 @@ class SeqList {
     Status nextElem(const ElemType&, ElemType&) const;
     Status insertElem(int i, const ElemType&);
     Status deleteElem(int i, ElemType&);
-    Status traverse(Status (*)(ElemType&)); // ?
+    Status traverse(Status (*)(ElemType&));
 };
 
 template <typename ElemType>
