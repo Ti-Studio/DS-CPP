@@ -41,7 +41,7 @@ LinkList<ElemType>::LinkList() {
     L = new ElemType[LIST_INIT_SIZE];
     if (!T)
         exit(OVERFLOW);
-    _length = 0;
+    len = 0;
     listsize = LIST_INIT_SIZE;
 }
 
@@ -52,12 +52,12 @@ LinkList<ElemType>::~LinkList() {
 
 template <typename ElemType>
 bool LinkList<ElemType>::empty() const {
-    return _length == 0;
+    return len == 0;
 } 
 
 template <typename ElemType>
 int LinkList<ElemType>::length() const {
-    return _length;
+    return len;
 }
 
 template <typename ElemType>
@@ -66,13 +66,13 @@ Status LinkList<ElemType>::clear() {
     L = new ElemType[LIST_INIT_SIZE];
     if (!T)
         exit(OVERFLOW);
-    _length = 0;
+    len = 0;
     listsize = LIST_INIT_SIZE;
 }
 
 template <typename ElemType>
 Status LinkList<ElemType>::getElem(int i, ElemType& e) const {
-    if (i > _length || i < 1) {
+    if (i > len || i < 1) {
         return ERROR;
     }
     e = L[i - 1];
@@ -81,7 +81,7 @@ Status LinkList<ElemType>::getElem(int i, ElemType& e) const {
 
 template <typename ElemType>
 int LinkList<ElemType>::locateElem(const ElemType& e) const {
-    for (int i = 0; i < _length; i++) {
+    for (int i = 0; i < len; i++) {
         if (L[i] == e) {
             return i + 1;
         }
@@ -94,7 +94,7 @@ Status LinkList<ElemType>::priorElem(const ElemType& cur_e, ElemType& pre_e) con
     if (empty() || L[0] == cur_e) {
         return ERROR;
     }
-    for (int i = 1; i < _length; i++) {
+    for (int i = 1; i < len; i++) {
         if (L[i] == cur_e) {
             pre_e = L[i - 1];
             return OK;
@@ -105,10 +105,10 @@ Status LinkList<ElemType>::priorElem(const ElemType& cur_e, ElemType& pre_e) con
 
 template <typename ElemType>
 Status LinkList<ElemType>::nextElem(const ElemType& cur_e, ElemType& next_e) const {
-    if (empty() || L[_length - 1] == cur_e) {
+    if (empty() || L[len - 1] == cur_e) {
         return ERROR;
     }
-    for (int i = 0; i < _length - 1; i++) {
+    for (int i = 0; i < len - 1; i++) {
         if (L[i] == cur_e) {
             next_e = L[i + 1];
             return OK;
@@ -119,10 +119,10 @@ Status LinkList<ElemType>::nextElem(const ElemType& cur_e, ElemType& next_e) con
 
 template <typename ElemType>
 Status LinkList<ElemType>::insertElem(int i, const ElemType& e) {
-    if (i < 1 || i > _length + 1) {
+    if (i < 1 || i > len + 1) {
         return ERROR;
     }
-    if (_length >= listsize) {
+    if (len >= listsize) {
         L = resize(L, listsize, listsize + LISTINCREMENT);
         if (!L) {
             exit(OVERFLOW);
@@ -130,33 +130,33 @@ Status LinkList<ElemType>::insertElem(int i, const ElemType& e) {
         listsize += LISTINCREMENT;
     }
     ElemType* q = &(L[i - 1]);
-    for (ElemType* p = &(L[_length - 1]); p >= q; p--) {
+    for (ElemType* p = &(L[len - 1]); p >= q; p--) {
         *(p + 1) = *p;
     }
     *q = e;
-    _length++;
+    len++;
     return OK;
 }
 
 template <typename ElemType>
 Status LinkList<ElemType>::deleteElem(int i, ElemType& e) {
-    if (i < 1 || i > _length) {
+    if (i < 1 || i > len) {
         return ERROR;
     }
     ElemType* p = &(L[i - 1]);
     e = p;
-    ElemType* q = &(L[_length - 1]);
+    ElemType* q = &(L[len - 1]);
     p++;
     for (p; p <= q; p++) {
         *(p - 1) = *p;
     }
-    _length--;
+    len--;
     return OK;
 }
 
 template <typename ElemType>
 Status LinkList<ElemType>::traverse(Status (*visit)(ElemType &)) {
-    for (int i = 0; i < _length; i++) {
+    for (int i = 0; i < len; i++) {
         if (visit(L[i]) != OK) {
             return ERROR;
         }
