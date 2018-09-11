@@ -1,5 +1,5 @@
-#include "../Triplet.h"
-#include <assert.h>
+#include "Triplet.h"
+#include <cassert>
 
 using namespace std;
 

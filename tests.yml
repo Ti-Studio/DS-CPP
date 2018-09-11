@@ -4,3 +4,8 @@ cxxflags:
 
 syntax_check:
   - Triplet.h
+  - SeqList.h
+  - LinkList.h
+
+test:
+  - test/Triplet.cpp
