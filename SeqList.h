@@ -31,7 +31,7 @@ class SeqList {
 template <typename ElemType>
 SeqList<ElemType>::SeqList() {
     L = new ElemType[LIST_INIT_SIZE];
-    if (!T)
+    if (!L)
         exit(OVERFLOW);
     _length = 0;
     listsize = LIST_INIT_SIZE;
@@ -56,7 +56,7 @@ template <typename ElemType>
 Status SeqList<ElemType>::clear() {
     delete[] L;
     L = new ElemType[LIST_INIT_SIZE];
-    if (!T)
+    if (!L)
         exit(OVERFLOW);
     _length = 0;
     listsize = LIST_INIT_SIZE;
